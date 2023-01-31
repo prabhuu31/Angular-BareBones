@@ -2,13 +2,13 @@
 - hosts: localhost
   vars:
     git_repo: "https://github.com/prabhuu31/Angular-BareBones.git"
-    branch: "{{branch_name}}"
+    branch: "{{BRANCH_NAME}}"
     repo_name: "bone"
   tasks:
   - name: Checkout code from git
     git:
       repo: "{{git_repo}}"
-      version: "{{ branch_name}}"
+      version: "{{BRANCH_NAME}}"
       dest: "{{repo_name}}"
       clone: yes
       update: yes
