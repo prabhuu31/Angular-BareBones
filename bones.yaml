@@ -1,0 +1,30 @@
+---
+- hosts: localhost
+  vars:
+    git_repo: "https://github.com/prabhuu31/Angular-BareBones.git"
+    branch: "{{branch_name}}"
+    repo_name: "bone"
+  tasks:
+  - name: Checkout code from git
+    git:
+      repo: "{{git_repo}}"
+      version: "{{ branch_name}}"
+      dest: "{{repo_name}}"
+      clone: yes
+      update: yes
+
+  - name: Installing Dependencies
+    shell: npm install 
+    args:
+      chdir: /home/prabhu/bones
+
+  - name: Build
+    shell: ng build   
+    args:
+      chdir: /home/prabhu/bones
+
+  - name: Deploy
+    shell: ng serve 
+    args:
+      chdir: /home/prabhu/bones
+    
